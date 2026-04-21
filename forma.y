@@ -12,6 +12,7 @@ import java.lang.reflect.*;
 %}
 %token NUMBER LINE CIRCULO RECTANGULO COLOR PRINT IMAGEN FILTRO
 %token NUMBER LINE CIRCULO RECTANGULO COLOR PRINT IMAGEN FILTRO GIRO /*Para aceptar giros*/
+%token NUMBER LINE CIRCULO RECTANGULO COLOR PRINT IMAGEN FILTRO GIRO MOVER /*Para aceptar coordenadas X & Y*/
 %start list
 %%
 list :
@@ -32,6 +33,12 @@ inst:  NUMBER  { ((Algo)$$.obj).inst=maq.code("constpush");
                 maq.code(((Algo)$2.obj).simb); maq.code("color");}
       | GIRO NUMBER { maq.code("constpush");                       /*Regla para que el programa sepa que después de la palabra giro debe ir un número*/
                 maq.code(((Algo)$2.obj).simb); maq.code("giro");}
+      | MOVER NUMBER NUMBER { 
+                maq.code("constpush");
+                maq.code(((Algo)$2.obj).simb); // Enviamos X a la pila
+                maq.code("constpush");
+                maq.code(((Algo)$3.obj).simb); // Enviamos Y a la pila
+                maq.code("mover");}
       | IMAGEN NUMBER NUMBER {
               Simbolo s=new Simbolo();
               s.ponDibu(new Imagen(leeImagen("dalmata.jpg"), 
@@ -171,6 +178,7 @@ Parser(int foo){
    tabla.put("ima", new Simbolo(IMAGEN, 0.0));
    tabla.put("fil", new Simbolo(FILTRO, 0.0));
    tabla.put("giro", new Simbolo(GIRO, 0.0));  /*Se registra la palabra giro en el diccionario*/
+   tabla.put("mover", new Simbolo(MOVER, 0.0)); /*Se registra la palabra mover en el diccionario*/
    maq.setTabla(tabla);
    jf=new JFrame("Calcula");
    canv=new Canvas();
