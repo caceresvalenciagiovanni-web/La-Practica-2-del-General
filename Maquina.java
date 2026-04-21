@@ -52,8 +52,8 @@ class  Maquina {
 	    System.out.println("222 pc= "+pc+" instr "+inst);
             c=this.getClass();
 	    //System.out.println("clase "+c.getName());
-            metodo=c.getDeclaredMethod(inst, null);
-	    metodo.invoke(this, null);
+            metodo=c.getDeclaredMethod(inst);
+	    metodo.invoke(this);
 	 } catch(NoSuchMethodException e){
 				System.out.println("No metodo "+e);
          } catch(InvocationTargetException e){
@@ -68,7 +68,7 @@ class  Maquina {
       Double d;
       s=(Simbolo)prog.get(pc);
       pc=pc+1;
-      pila.push(new Double(s.val));
+      pila.push(Double.valueOf(s.val));
    }
    public void varpush(){
       Simbolo s;
