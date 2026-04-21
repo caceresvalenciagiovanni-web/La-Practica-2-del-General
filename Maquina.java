@@ -126,9 +126,16 @@ class  Maquina {
       }
    }
    public void rectangulo(){
+      double d_alto;
+      double d_ancho;
+      // Saca los valores de la pila (el último en entrar es el alto)
+      d_alto = ((Double)pila.pop()).doubleValue();
+      d_ancho = ((Double)pila.pop()).doubleValue();
       if(g!=null){
-         (new Rectangulo(x+150, 150-y, 100, 200 )).dibuja(g);
+         // Se sustituye el 100 y el 200 por las variables dinámicas
+         (new Rectangulo(x+150, 150-y, (int)d_ancho, (int)d_alto )).dibuja(g);
       }
+      System.out.println("Dibujando rectángulo de " + d_ancho + " x " + d_alto);
    }
    public void draw(){      
       Simbolo s;
