@@ -98,6 +98,15 @@ class  Maquina {
       y=(int)(y+d1*Math.sin(angulo));
       System.out.println("x="+x+" y="+y+" d1="+d1);
    }
+   public void giro(){
+      double d1;
+      // Saca el número (los grados) que el usuario escribió
+      d1=((Double)pila.pop()).doubleValue();
+      // Java usa radianes para calcular el seno y coseno, 
+      // así que se convierten los grados a radianes y se lo sumamos al ángulo actual
+      angulo = angulo + Math.toRadians(d1);
+      System.out.println("Girando " + d1 + " grados. Nuevo angulo interno: " + angulo);
+   }	
    public void circulo(){
       double d1;
       d1=((Double)pila.pop()).doubleValue();
