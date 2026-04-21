@@ -16,7 +16,8 @@ import java.lang.reflect.*;
 list :
      | list ';'
      | list inst ';'   { 
-             maq.code("print"); maq.code("STOP"); return 1 ;
+             maq.code("print"); maq.code("STOP"); 
+             if(true) return 1 ;
      }   
      ;
 inst:  NUMBER  { ((Algo)$$.obj).inst=maq.code("constpush");
