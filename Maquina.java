@@ -107,6 +107,17 @@ class  Maquina {
       angulo = angulo + Math.toRadians(d1);
       System.out.println("Girando " + d1 + " grados. Nuevo angulo interno: " + angulo);
    }	
+   public void mover(){
+      double d_y;
+      double d_x;
+      // Se sacan los valores de la pila (el último en entrar es el primero en salir)
+      d_y = ((Double)pila.pop()).doubleValue();
+      d_x = ((Double)pila.pop()).doubleValue();
+      // Se actualizan las coordenadas del "lápiz"
+      x = (int) d_x;
+      y = (int) d_y;
+      System.out.println("Lápiz movido a la coordenada x=" + x + ", y=" + y);
+   }
    public void circulo(){
       double d1;
       d1=((Double)pila.pop()).doubleValue();
